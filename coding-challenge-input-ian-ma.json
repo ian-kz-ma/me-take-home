@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "accountType": "mint",
+    "tokens": 243,
+    "callbackTimeMs": 2000,
+    "data": {
+      "mintId": "6BhkGCMVMyrjEEkrASJcLxfAvoW43g6BubxjpeUyZFoz"
+    },
+    "version": 1
+  },
+  {
+    "id": "1",
+    "accountType": "mint",
+    "tokens": 322,
+    "callbackTimeMs": 300,
+    "data": {
+      "mintId": "ZBTDeX9WPfT8P2KJ4mWhMXZccQPfpjuuq8DvEqQS7sB3"
+    },
+    "version": 3
+  }
+]
