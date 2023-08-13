@@ -1,0 +1,17 @@
+{
+  "name": "me-take-home",
+  "version": "1.0.0",
+  "description": "Magic Eden Take Home Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+}
