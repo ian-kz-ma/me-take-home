@@ -2,7 +2,7 @@ const fs = require('fs');
 
 let accountsMap = new Map();
 let cooldownTimer = null;
-const COOLDOWN_DURATION = 5000; // After 5 seconds of no account updates, the system will shutdown
+const COOLDOWN_DURATION = 15000; // After 15 seconds of no account updates, the system will shutdown
 
 const ingestAccount = (accountData) => {
     //Reset cooldown timer to prevent shutdown
@@ -14,6 +14,12 @@ const ingestAccount = (accountData) => {
     //Check if we already have this account
     if (accountsMap.has(accountId)) {
         const existingAccount = accountsMap.get(accountId);
+
+        //Ignore accounts with no version
+        if (!version) { 
+            console.log(`IGNORED account ID ${accountId} with no version`);
+            return; 
+        }
 
         //Ignore older versions of the account
         if (existingAccount.version >= version) {
