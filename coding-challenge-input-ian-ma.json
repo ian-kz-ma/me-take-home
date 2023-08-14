@@ -2,8 +2,8 @@
   {
     "id": "1",
     "accountType": "mint",
-    "tokens": 243,
-    "callbackTimeMs": 2000,
+    "tokens": 222,
+    "callbackTimeMs": 500,
     "data": {
       "mintId": "6BhkGCMVMyrjEEkrASJcLxfAvoW43g6BubxjpeUyZFoz"
     },
@@ -12,8 +12,8 @@
   {
     "id": "1",
     "accountType": "mint",
-    "tokens": 322,
-    "callbackTimeMs": 300,
+    "tokens": 111,
+    "callbackTimeMs": 100,
     "data": {
       "mintId": "ZBTDeX9WPfT8P2KJ4mWhMXZccQPfpjuuq8DvEqQS7sB3"
     },

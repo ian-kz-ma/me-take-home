@@ -1,14 +1,11 @@
 const fs = require('fs');
 
 let accountsMap = new Map();
-let ingestedCounter = 0;
-let callbackCounter = 0;
 let cooldownTimer = null;
-const COOLDOWN_DURATION = 10000; // 5 seconds; adjust based on expected frequency of data
+const COOLDOWN_DURATION = 5000; // 5 seconds; adjust based on expected frequency of data
 
 const ingestAccount = (accountData) => {
     resetCooldown();
-
     const accountId = accountData.id;
     const version = accountData.version;
 
@@ -26,8 +23,6 @@ const ingestAccount = (accountData) => {
 
     const callbackTimer = setTimeout(() => {
         console.log(`Callback for account ID: ${accountId}, Version: ${version}`);
-        callbackCounter++;
-        checkShutdown();
     }, accountData.callbackTimeMs);
 
     accountsMap.set(accountId, {
@@ -36,8 +31,6 @@ const ingestAccount = (accountData) => {
     });
 
     console.log(`Indexed account ID: ${accountId}, Version: ${version}`);
-    ingestedCounter++;
-    checkShutdown();
 };
 
 const resetCooldown = () => {
@@ -46,12 +39,6 @@ const resetCooldown = () => {
     cooldownTimer = setTimeout(() => {
         shutdownSystem();
     }, COOLDOWN_DURATION);
-};
-
-const checkShutdown = () => {
-    if (ingestedCounter === callbackCounter) {
-        shutdownSystem();
-    }
 };
 
 const shutdownSystem = () => {
@@ -68,7 +55,6 @@ const shutdownSystem = () => {
     }
     process.exit(0);
 };
-
 
 const readAccountUpdates = () => {
     fs.readFile('coding-challenge-input-ian-ma.json', 'utf-8', (err, data) => {
