@@ -2,35 +2,40 @@ const fs = require('fs');
 
 let accountsMap = new Map();
 let cooldownTimer = null;
-const COOLDOWN_DURATION = 5000; // 5 seconds; adjust based on expected frequency of data
+const COOLDOWN_DURATION = 5000; // After 5 seconds of no account updates, the system will shutdown
 
 const ingestAccount = (accountData) => {
+    //Reset cooldown timer to prevent shutdown
     resetCooldown();
+
     const accountId = accountData.id;
     const version = accountData.version;
 
+    //Check if we already have this account
     if (accountsMap.has(accountId)) {
         const existingAccount = accountsMap.get(accountId);
+
+        //Ignore older versions of the account
         if (existingAccount.version >= version) {
-            // Ignore older versions
             return;
         } else {
-            // Cancel older callback
+            //We have a new account version. Cancel old callback
             clearTimeout(existingAccount.callbackTimer);
-            console.log(`Callback for ${accountId} version ${existingAccount.version} is canceled in favor of version ${version}`);
+            console.log(`CANCELED callback for account ID ${accountId}, version ${existingAccount.version}. New version: ${version}`);
         }
     }
 
+    //Set the timer for the callback
     const callbackTimer = setTimeout(() => {
-        console.log(`Callback for account ID: ${accountId}, Version: ${version}`);
+        console.log(`CALLBACK for account ID: ${accountId}, Version: ${version}`);
     }, accountData.callbackTimeMs);
 
+    //We have a new account
     accountsMap.set(accountId, {
         ...accountData,
         callbackTimer: callbackTimer
     });
-
-    console.log(`Indexed account ID: ${accountId}, Version: ${version}`);
+    console.log(`INDEXED account ID: ${accountId}, Version: ${version}`);
 };
 
 const resetCooldown = () => {
@@ -43,25 +48,32 @@ const resetCooldown = () => {
 
 const shutdownSystem = () => {
     const highestTokensByType = {};
+
     accountsMap.forEach(account => {
         if (!highestTokensByType[account.accountType] || highestTokensByType[account.accountType].tokens < account.tokens) {
             highestTokensByType[account.accountType] = account;
         }
     });
 
-    console.log('\nHighest token-value accounts by AccountType:');
+    console.log('\n\nShutting down.....\n\n');
+    console.log('===================================================================');
+    console.log('========== Highest token-value accounts by AccountType ============');
+    console.log('===================================================================\n');
+
     for (const [type, account] of Object.entries(highestTokensByType)) {
-        console.log(`AccountType: ${type}, AccountID: ${account.id}, Tokens: ${account.tokens}, Version: ${account.version}, Data: ${JSON.stringify(account.data)}`);
+        console.log(`AccountType: ${type}, Tokens: ${account.tokens}, AccountID: ${account.id}, Version: ${account.version}`);
     }
     process.exit(0);
 };
 
-const readAccountUpdates = () => {
+const startAccountStream = () => {
     fs.readFile('coding-challenge-input-ian-ma.json', 'utf-8', (err, data) => {
         if (err) throw err;
         const accounts = JSON.parse(data);
+
+        // Simulate account updates by reading from the file and ingesting each account with a random delay
         accounts.forEach(account => {
-            const ingestionTime = Math.floor(Math.random() * 1001); // Random time between 0 to 1000ms
+            const ingestionTime = Math.floor(Math.random() * 1001);
             setTimeout(() => {
                 ingestAccount(account);
             }, ingestionTime);
@@ -69,4 +81,5 @@ const readAccountUpdates = () => {
     });
 };
 
-readAccountUpdates();
+//Initialize the account stream simulation
+startAccountStream();
