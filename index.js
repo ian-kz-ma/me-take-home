@@ -2,7 +2,7 @@ const fs = require('fs');
 
 let accountsMap = new Map();
 let cooldownTimer = null;
-const COOLDOWN_DURATION = 15000; // After 15 seconds of no account updates, the system will shutdown
+const COOLDOWN_DURATION = 20000; // After 20 seconds of no account updates, the system will shutdown
 
 const ingestAccount = (accountData) => {
     //Reset cooldown timer to prevent shutdown
