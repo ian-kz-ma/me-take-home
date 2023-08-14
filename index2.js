@@ -3,17 +3,17 @@ const CooldownHandler = require('./src/CooldownHandler');
 const StreamHandler = require('./src/StreamHandler');
 const ReportHandler = require('./src/ReportHandler');
 
-const cooldownManager = new CooldownHandler(() => {
-    reportManager.generateReport();
+const cooldownHandler = new CooldownHandler(() => {
+    reportHandler.generateReport();
     process.exit(0);
 });
 
-const accountManager = new AccountHandler(cooldownManager);
+const accountHandler = new AccountHandler(cooldownHandler);
 
-const reportManager = new ReportHandler(accountManager.getAccountsMap());
+const reportHandler = new ReportHandler(accountHandler.getAccountsMap());
 
-const streamManager = new StreamHandler('coding-challenge-input-ian-ma.json', accountManager.ingestAccount.bind(accountManager));
+const streamHandler = new StreamHandler('coding-challenge-input-ian-ma.json', accountHandler.ingestAccount.bind(accountHandler));
 
 // Start the streaming process
-streamManager.startStream();
+streamHandler.startStream();
 
