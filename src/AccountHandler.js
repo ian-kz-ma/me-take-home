@@ -40,7 +40,7 @@ class AccountHandler {
             console.log(`CALLBACK for account ID: ${accountId}, Version: ${version}`);
         }, accountData.callbackTimeMs);
 
-        // We have a new account
+        // We have a new account data
         this.accountsMap.set(accountId, {
             ...accountData,
             callbackTimer: callbackTimer

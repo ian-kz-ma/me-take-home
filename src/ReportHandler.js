@@ -20,6 +20,8 @@ class ReportHandler {
         for (const [type, account] of Object.entries(highestTokensByType)) {
             console.log(`AccountType: ${type}, Tokens: ${account.tokens}, AccountID: ${account.id}, Version: ${account.version}`);
         }
+
+        return highestTokensByType;
     }
 }
 
