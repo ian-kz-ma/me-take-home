@@ -5,15 +5,17 @@ const expect = chai.expect;
 const StreamHandler = require('../src/StreamHandler');
 
 describe('StreamHandler', () => {
-    it('should have a constructor that takes in a filePath and an ingestCallback', () => {
-        const streamHandler = new StreamHandler('test.json', () => {});
-        expect(streamHandler).to.have.property('filePath');
-        expect(streamHandler).to.have.property('ingestCallback');
-    });
-
-    it('should have a startStream method', () => {
-        const streamHandler = new StreamHandler('test.json', () => {});
-        expect(streamHandler).to.have.property('startStream');
+    describe('class structure tests', () => {
+        it('should have a constructor that takes in a filePath and an ingestCallback', () => {
+            const streamHandler = new StreamHandler('test.json', () => {});
+            expect(streamHandler).to.have.property('filePath');
+            expect(streamHandler).to.have.property('ingestCallback');
+        });
+    
+        it('should have a startStream method', () => {
+            const streamHandler = new StreamHandler('test.json', () => {});
+            expect(streamHandler).to.have.property('startStream');
+        });
     });
 
     describe('Testing the callback with stubs', () => {

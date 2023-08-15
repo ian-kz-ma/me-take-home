@@ -47,6 +47,12 @@ class AccountHandler {
         });
         console.log(`INDEXED account ID: ${accountId}, Version: ${version}`);
     }
+
+    cleanup() {
+        this.accountsMap.forEach(account => {
+            clearTimeout(account.callbackTimer);
+        });
+    }
 }
 
 module.exports = AccountHandler;
