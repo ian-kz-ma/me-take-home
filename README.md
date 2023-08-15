@@ -46,9 +46,15 @@ In the terminal window run `npm -v` and `node -v` to ensure you have node and np
 
 Next run `npm install` to download and update dependencies.
 
-To start the main application run `npm start`.
+To start the main application run 
+```sh
+npm start
+```
 
-To start the unit tests run `npm test`.
+To start the unit tests run
+```sh
+npm test
+```
 
 ## Design Explanation
 
