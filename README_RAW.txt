@@ -33,8 +33,8 @@ Once the JSON file is fully processed and all callbacks are complete the applica
 
 The JSON file used is "coding-challenge-input-ian-ma.json" located at the root of the project.
 The starting point of the application is "index.js" located at the root of the project.
-The folder named "src" located contains all of the main classes that handle the application logic.
-The "test" contains all of the unit tests.
+The "src" folder contains all of the main classes that handle the application logic.
+The "test" folder contains all of the unit tests.
 
 
 ******************************************************

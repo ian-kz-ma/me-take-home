@@ -3,7 +3,7 @@ const fs = require('fs');
 class StreamHandler {
     constructor(filePath, ingestCallback) {
         this.filePath = filePath;
-        this.ingestCallback = ingestCallback; // This will be the ingestAccount function
+        this.ingestCallback = ingestCallback;
     }
 
     startStream() {
@@ -15,7 +15,7 @@ class StreamHandler {
             accounts.forEach(account => {
                 const ingestionTime = Math.floor(Math.random() * 1001);
                 setTimeout(() => {
-                    this.ingestCallback(account); // This calls the ingestAccount function for each account
+                    this.ingestCallback(account);
                 }, ingestionTime);
             });
         });
