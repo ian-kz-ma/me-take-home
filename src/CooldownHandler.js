@@ -1,5 +1,5 @@
 class CooldownHandler {
-    constructor(shutdownCallback, duration = 20000) {
+    constructor(shutdownCallback, duration = 15000) {
         this.cooldownTimer = null;
         this.COOLDOWN_DURATION = duration;
         this.shutdownCallback = shutdownCallback; // This callback function will be invoked when the cooldown expires.

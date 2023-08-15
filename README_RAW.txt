@@ -1,21 +1,25 @@
-# Magic Eden Coding Challenge
+*************************************************
+*************** Table of Contents ***************
+*************************************************
 
-## Table of Contents
 
-- [About](#about)
-- [Installation and Setup](#installation-and-setup_)
-- [Usage](#usage)
-- [Design Explanation](#design-explanation)
-- [Limitations and Considerations](#limitations-and-considerations)
+- [About]
+- [Installation and Setup]
+- [Usage]
+- [Design Explanation]
+- [Limitations and Considerations]
 
-## About
 
-NOTE: To view the non-github formatted version of this file, please see the file "README_RAW.txt".
+*************************************
+*************** About ***************
+*************************************
+
+
+NOTE: This is the raw version of the README. To view the github formatted version see "README.md".
 
 This application simulates the indexing of data on the blockchain. A JSON file is used to act as the stream of data to be indexed by the applicationm when running the program.
 The data being streamed consists of accounts with various attributes. An example is shown below:
 
-```sh
 {
     "id": "gkDF8QaRcyLCm4A6tsmHiQvqUZ7NqsvpXiZ8K8RQof9n",
     "accountType": "account",
@@ -24,7 +28,6 @@ The data being streamed consists of accounts with various attributes. An example
     "data": {},
     "version": 39
 }
-```
 
 Once the JSON file is fully processed and all callbacks are complete the application will generate a report on the highest version, highest token-value accounts by AccountType. The application will then shutdown.
 
@@ -33,30 +36,36 @@ The starting point of the application is "index.js" located at the root of the p
 The folder named "src" located contains all of the main classes that handle the application logic.
 The "test" contains all of the unit tests.
 
-## Installation and Setup
+
+******************************************************
+*************** Installation and Setup ***************
+******************************************************
+
 
 You will need to install Node.js and npm in order to run the application. Please see the below link if you do not already have these:
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-## Usage
+
+*************************************
+*************** Usage ***************
+*************************************
+
 
 Open the project in your preferred IDE (VisualStudioCode)
 
-In the terminal window run `npm -v` and `node -v` to ensure you have node and npm installed correctly.
+In the terminal window run "npm -v" and "node -v" to ensure you have node and npm installed correctly.
 
-Next run `npm install` to download and update dependencies.
+Next run "npm install" to download and update dependencies.
 
-To start the main application run 
-```sh
-npm start
-```
+To start the main application run: "npm start
 
-To start the unit tests run
-```sh
-npm test
-```
+To start the unit tests run: "npm test"
 
-## Design Explanation
+
+**************************************************
+*************** Design Explanation ***************
+**************************************************
+
 
 Initially the application was written in a 1-file script format as a proof of concept (index_old.js). Since this application has multiple components, (account handling, cooldown management, report generation, data streaming) this was eventually rewritten to implement classes in order to improve organization and maintainability. More specifically the design pattern used was dependency injection. This was chosen so that logic from class to class is abstracted out and classes that use other classes know nothing about eachother. The decoupling of the classes makes unit testing as well as future class updates easier provided that interfaces are retained. Its also worth noting that in a situation where asynchronous  operations are a main focus, such as this coding challenge, separation between components is preferred for clarity.
 
@@ -69,7 +78,10 @@ Other smaller notes:
 - A "cooldown" method was used to manage the shutting down of the system. Admittedly this is a crude way to manage the shutting down of the system but it was chosen for simplicity sake. Further discussion regarding this is outlined below
 
 
-## Limitations and Considerations
+**************************************************************
+*************** Limitations and Considerations ***************
+**************************************************************
+
 
 Its worth considering what would happen if the ingestion rate becomes exceedingly fast. The event loop can become overloaded and its possible that some events can be delayed or even missed. In the context of this challenge specifically its possible that memory issues could occur if enough accounts were streamed and the amount of timers created became very large. Also the Map data structure would become very large.
 
@@ -77,6 +89,9 @@ As mentioned before the "cooldown" method used to manage the shutdown is not ide
 
 Also it was noticed that some accounts do not have a version. These were ignored but I would think that in a production environment these accounts would need to be handled differently. Either collected and handled later or some other method.
 
-## Thanks Magic Eden Team
+
+******************************************************
+*************** Thanks Magic Eden Team ***************
+******************************************************
 
 Thanks for your time and for this opportunity!
