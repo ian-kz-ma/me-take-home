@@ -30,12 +30,25 @@ Once the JSON file is fully processed and all callbacks are complete the applica
 
 The JSON file used is "coding-challenge-input-ian-ma.json" located at the root of the project.
 The starting point of the application is "index.js" located at the root of the project.
-There is a folder named "src" located at the root of the project which contains all of the main classes that handle the application logic.
-There is a folder named "test" located at the root of the project which contains all of the unit tests.
+The folder named "src" located contains all of the main classes that handle the application logic.
+The "test" contains all of the unit tests.
 
 ## Installation and Setup
 
+You will need to install Node.js and npm in order to run the application. Please see the below link if you do not already have these:
+https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
 ## Usage
+
+Open the project in your preferred IDE (VisualStudioCode)
+
+In the terminal window run `npm -v` and `node -v` to ensure you have node and npm installed correctly.
+
+Next run `npm install` to download and update dependencies.
+
+To start the main application run `npm start`.
+
+To start the unit tests run `npm test`.
 
 ## Design Explanation
 
